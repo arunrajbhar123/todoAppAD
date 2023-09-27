@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView myRecyclerView = findViewById(R.id.recyclerView);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 20; i++) {
             boolean condition = (i % 2 == 0);
             String title = condition ? "This is a completed task." : "This is not a completed task.";
             arrayList.add(new Data(title, condition));

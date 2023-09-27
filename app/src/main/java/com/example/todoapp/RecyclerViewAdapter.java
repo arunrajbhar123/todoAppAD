@@ -54,15 +54,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
 
-        holder.isChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                currentItem.setChecked(b);
-                notifyDataSetChanged();
-
-            }
-        });
-
     }
 
     @Override
@@ -88,8 +79,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        data.get(position).setChecked(b);
 
-
+                        if (b) {
+                            title.setPaintFlags(title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        } else {
+                            title.setPaintFlags(title.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                        }
+                    }
                 }
             });
 
@@ -117,4 +115,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
 
     }
+
+
 }
